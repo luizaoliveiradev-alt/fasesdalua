@@ -23,35 +23,23 @@
 
 html,
 body {
-
     margin: 0;
     padding: 0;
-
-    width: 100%;
-    height: 100%;
-
+    width: 100vw;
+    height: 100vh;
     background: var(--dark-bg);
-
     overflow: hidden;
-
     touch-action: manipulation;
-
     overscroll-behavior: none;
-
     user-select: none;
     -webkit-user-select: none;
-
 }
 
 body {
-
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     min-height: 100dvh;
-
 }
 
 
@@ -60,51 +48,31 @@ body {
 ========================================= */
 
 #orientation-overlay {
-
     position: fixed;
-
     inset: 0;
-
     background: #000;
-
     color: white;
-
     z-index: 99999;
-
     display: none;
-
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
-
     text-align: center;
-
     font-family: Arial,sans-serif;
-
 }
 
 #orientation-overlay div {
-
     font-size: 50px;
-
 }
 
 #orientation-overlay p {
-
     font-size: 18px;
-
 }
 
 @media (orientation:portrait) {
-
     #orientation-overlay {
-
         display:flex;
-
     }
-
 }
 
 
@@ -113,35 +81,21 @@ body {
 ========================================= */
 
 .face-container {
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     width:100vw;
-
     height:100vh;
-
     animation:float 5s ease-in-out infinite;
-
 }
 
 @keyframes float {
-
     0%,100% {
-
         transform:translateY(0);
-
     }
-
     50% {
-
         transform:translateY(-12px);
-
     }
-
 }
 
 
@@ -150,45 +104,29 @@ body {
 ========================================= */
 
 .eyes-row {
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:clamp(60px,11vw,160px);
-
     width:100vw;
-
 }
 
 
 .eye {
-
     width:clamp(170px,22vw,330px);
-
     height:clamp(150px,20vw,290px);
-
     background:var(--eye-white);
-
     border-radius:80px;
-
     box-shadow:
-
         0 0 30px var(--glow-soft),
-
         0 0 70px rgba(240,250,255,0.07);
-
     transition:
-
         all .4s cubic-bezier(
             .175,
             .885,
             .32,
             1.275
         );
-
 }
 
 
@@ -197,15 +135,10 @@ body {
 ========================================= */
 
 .sleeping .eye {
-
     width:clamp(140px,18vw,260px);
-
     height:8px;
-
     opacity:.2;
-
     border-radius:4px;
-
 }
 
 
@@ -214,25 +147,15 @@ body {
 ========================================= */
 
 .happy .eye {
-
     height:clamp(70px,10vw,130px);
-
     background:transparent;
-
     border-top:
-
         clamp(18px,2.5vw,30px)
-
         solid var(--eye-white);
-
     border-radius:
-
         100px 100px 0 0;
-
     box-shadow:none;
-
     transform:translateY(25px);
-
 }
 
 
@@ -241,19 +164,13 @@ body {
 ========================================= */
 
 .thinking #eye-l {
-
     width:clamp(170px,22vw,330px);
-
     height:clamp(150px,20vw,290px);
-
 }
 
 .thinking #eye-r {
-
     width:clamp(170px,22vw,330px);
-
     height:clamp(100px,15vw,210px);
-
 }
 
 
@@ -262,13 +179,9 @@ body {
 ========================================= */
 
 .laughing .eye {
-
     width:clamp(170px,22vw,330px);
-
     height:clamp(40px,6vw,75px);
-
     transform:skewX(10deg);
-
 }
 
 
@@ -277,9 +190,7 @@ body {
 ========================================= */
 
 .blink .eye {
-
     transform:scaleY(0)!important;
-
 }
 
 
@@ -288,74 +199,44 @@ body {
 ========================================= */
 
 @media (orientation:landscape) {
-
     .eye {
-
         width:22vw;
-
         height:20vw;
-
         max-width:330px;
-
         max-height:290px;
-
     }
-
 }
 
 
 @media (max-height:500px) and (orientation:landscape) {
-
     .eye {
-
         width:20vw;
-
         height:17vw;
-
         max-width:270px;
-
         max-height:225px;
-
     }
-
     .eyes-row {
-
         gap:10vw;
-
     }
-
 }
 
 </style>
 </head>
 <body class="sleeping">
 
-
-
 <div id="orientation-overlay">
-
     <div>📱🔄</div>
-
     <p>
         Gire o dispositivo para deitado.
     </p>
-
 </div>
-
 
 <div class="face-container">
-
     <div class="eyes-row">
-
         <div id="eye-l" class="eye"></div>
-
         <div id="eye-r" class="eye"></div>
-
     </div>
-
 </div>
-
-
 
 <script>
 
@@ -602,11 +483,6 @@ async function autorizarMicrofone() {
                 audio: true
             });
 
-        /*
-         * As faixas são encerradas imediatamente.
-         * A permissão concedida fica associada ao site
-         * conforme as regras do navegador.
-         */
         stream.getTracks().forEach(track => {
             track.stop();
         });
@@ -1065,12 +941,6 @@ if (recognition) {
 
         recognitionActive = false;
 
-        /*
-         * Alguns navegadores encerram a escuta
-         * automaticamente. Se o robô ainda estiver
-         * esperando uma resposta, tentamos novamente.
-         */
-
         if (
             robotAwake &&
             !robotSpeaking &&
@@ -1138,34 +1008,17 @@ if (recognition) {
    TELA CHEIA
 ========================================= */
 
-async function entrarTelaCheia() {
+function entrarTelaCheia() {
+    const docEl = document.documentElement;
+    const req = docEl.requestFullscreen || 
+                docEl.webkitRequestFullscreen || 
+                docEl.mozRequestFullScreen || 
+                docEl.msRequestFullscreen;
 
-    try {
-
-        if (
-            !document.fullscreenElement &&
-            document.documentElement.requestFullscreen
-        ) {
-
-            /*
-             * Esta chamada precisa ocorrer durante a
-             * interação do usuário. O primeiro toque
-             * chama esta função.
-             */
-
-            await document.documentElement.requestFullscreen({
-                navigationUI: "hide"
-            });
-
-        }
-
-    } catch (e) {
-
-        console.log(
-            "Tela cheia não disponível neste ambiente:",
-            e
-        );
-
+    if (req && !document.fullscreenElement) {
+        req.call(docEl).catch(err => {
+            console.log("Tela cheia não suportada ou bloqueada:", err);
+        });
     }
 }
 
@@ -1182,25 +1035,11 @@ async function acordarRobo() {
 
     robotAwake = true;
 
-    /*
-     * As duas solicitações são disparadas no primeiro
-     * toque do usuário.
-     */
-
+    entrarTelaCheia();
     inicializarAudioContext();
 
-    const fullscreenPromise =
-        entrarTelaCheia();
-
-    const microphonePromise =
-        autorizarMicrofone();
-
+    await autorizarMicrofone();
     manterTelaAcesa();
-
-    await Promise.allSettled([
-        fullscreenPromise,
-        microphonePromise
-    ]);
 
     body.className = "awake";
 
@@ -1239,20 +1078,8 @@ function dormirRobo() {
    PRIMEIRO TOQUE
 ========================================= */
 
-/*
- * O robô começa dormindo.
- * O primeiro toque acorda o robô, solicita o
- * microfone e entra em tela cheia.
- */
-
-window.addEventListener(
-    "pointerdown",
-    acordarRobo,
-    {
-        once: true,
-        passive: true
-    }
-);
+window.addEventListener("click", acordarRobo, { once: true });
+window.addEventListener("touchstart", acordarRobo, { once: true });
 
 
 /* =========================================
